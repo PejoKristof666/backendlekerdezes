@@ -6,33 +6,96 @@
         xmlns:local="clr-namespace:backendlekerdezes"
         mc:Ignorable="d"
         Title="MainWindow" Height="400" Width="600">
-    <Grid>
+    <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Grid>
+        <Grid Grid.Row="0" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
+                <RowDefinition Height="30"/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
-            </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" FontSize="30" TextAlignment="Center" VerticalAlignment="Center">Kacsa neve:</TextBlock>
-            <TextBlock Grid.Row="1" Grid.Column="0" FontSize="30" TextAlignment="Center" VerticalAlignment="Center">Kacsa hossza:</TextBlock>
-            <Button Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Click="AddKacsa">szoveg</Button>
-            <TextBox Name="nev" Grid.Column="1" Grid.Row="0" FontSize="24" VerticalAlignment="Center">Béla</TextBox>
-            <TextBox Name="hossz" Grid.Column="1" Grid.Row="1" FontSize="24" VerticalAlignment="Center">20</TextBox>
+            <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontSize="20" Foreground="White">Kacsa létrehozása</TextBlock>
+            <Border Grid.Row="1" Background="Gray" CornerRadius="25" Margin="10" BorderThickness="2" BorderBrush="Yellow">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="20">
+                        Név:
+                    </TextBlock>
+                    <TextBlock Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="1">
+                        Ára:
+                    </TextBlock>
+                    <Button Name="ClickAddKacsa" Foreground="Black" FontSize="20" Grid.Row="2" Grid.ColumnSpan="2" Margin="7">
+                        Hozzáadás:
+                    </Button>
+                    <TextBox Name="KacsaNameTextBox" Grid.Column="1" Grid.Row="0" Margin="10">
+                        
+                    </TextBox>
+                    <TextBox Name="KacsaPriceTextBox" Grid.Column="1" Grid.Row="1" Margin="10">
+
+                    </TextBox>
+                </Grid>
+            </Border>
         </Grid>
-        <StackPanel Grid.Row="1"  Name="Kacsak" >
-            
-        </StackPanel>
+        <Grid Grid.Row="0" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Foreground="White" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">
+                Statisztika
+            </TextBlock>
+
+            <Border Grid.Row="1" Margin="10" CornerRadius="20" Background="Gray" BorderThickness="2" BorderBrush="Yellow">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Foreground="White" Grid.Row="0" Grid.Column="0" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">
+                        Kacsák száma: 
+                    </TextBlock>
+                    <TextBlock Foreground="White" Grid.Row="1" Grid.Column="0" FontSize="16" TextAlignment="Center" VerticalAlignment="Center">
+                        Legkisebb kacsa:
+                    </TextBlock>
+                    <TextBlock Foreground="White" Grid.Row="2" Grid.Column="0" FontSize="15" TextAlignment="Center" VerticalAlignment="Center">
+                        Legnagyobb kacsa:
+                    </TextBlock>
+                    <TextBlock Name="KacsaDarab" Foreground="White" Grid.Row="0" Grid.Column="1" FontSize="15" TextAlignment="Center" VerticalAlignment="Center">
+                        a
+                    </TextBlock>
+                    <TextBlock Name="KacsaMin" Foreground="White" Grid.Row="1" Grid.Column="1" FontSize="15" TextAlignment="Center" VerticalAlignment="Center">
+                        b
+                    </TextBlock>
+                    <TextBlock Name="KacsaMax" Foreground="White" Grid.Row="2" Grid.Column="1" FontSize="15" TextAlignment="Center" VerticalAlignment="Center">
+                        c
+                    </TextBlock>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border Grid.Row="1" Grid.ColumnSpan="2" CornerRadius="20" BorderBrush="Yellow" BorderThickness="2" Background="Gray" Margin="20">
+            <StackPanel Name="KacsaPanel" Orientation="Horizontal">
+                
+            </StackPanel>
+        </Border>
+        
     </Grid>
 </Window>

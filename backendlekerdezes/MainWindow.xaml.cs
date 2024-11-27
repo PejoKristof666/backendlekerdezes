@@ -29,7 +29,7 @@ namespace backendlekerdezes
 
         async void CreateTextBlock()
         {
-            Kacsak.Children.Clear();
+            KacsaPanel.Children.Clear();
             HttpClient client = new HttpClient();
             string url = "http://127.0.0.1:4444/doga";
             try
@@ -39,9 +39,38 @@ namespace backendlekerdezes
                 List<KacsaClass> kacsaList = JsonConvert.DeserializeObject<List<KacsaClass>>(stringResponse);
                 foreach (KacsaClass item in kacsaList)
                 {
-                    TextBlock oneBlock = new TextBlock();
-                    oneBlock.Text = $"Kacsa neve: {item.name}, kacsa hossza: {item.price}";
-                    Kacsak.Children.Add(oneBlock);
+                    Grid oneGrid = new Grid();
+                    KacsaPanel.Children.Add(oneGrid);
+
+                    RowDefinition firstRow = new RowDefinition();
+                    RowDefinition secondRow = new RowDefinition();
+                    RowDefinition thirdRow = new RowDefinition();
+
+                    oneGrid.RowDefinitions.Add(firstRow);
+                    oneGrid.RowDefinitions.Add(secondRow);
+                    oneGrid.RowDefinitions.Add(thirdRow);
+
+                    TextBlock NameTextBlock = new TextBlock();
+                    TextBlock PriceTextBlock = new TextBlock();
+
+                    Button SellButton = new Button();
+
+
+                    oneGrid.Children.Add(NameTextBlock);
+                    oneGrid.Children.Add(PriceTextBlock);
+
+                    oneGrid.Children.Add(SellButton);
+
+                    Grid.SetRow(PriceTextBlock, 1);
+                    Grid.SetRow(SellButton, 2);
+
+                    NameTextBlock.Text = $"Név: {item.name}";
+                    PriceTextBlock.Text = $"Ára: {item.price}";
+                    SellButton.Content = "Eladás";
+
+                    //oneGrid.Background = ;
+
+                    //oneBlock.Text = $"Kacsa neve: {item.name}, kacsa hossza: {item.price}";
                 }
             }
             catch (Exception e)
@@ -60,8 +89,8 @@ namespace backendlekerdezes
             {
                 var jsonObject = new
                 {
-                    name = nev.Text,
-                    price = hossz.Text
+                    name = KacsaNameTextBox.Text,
+                    price = KacsaPriceTextBox.Text
                 };
 
                 string jsonData = JsonConvert.SerializeObject(jsonObject);
