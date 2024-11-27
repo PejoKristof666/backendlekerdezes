@@ -21,7 +21,7 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <TextBlock VerticalAlignment="Center" TextAlignment="Center" FontSize="20" Foreground="White">Kacsa létrehozása</TextBlock>
-            <Border Grid.Row="1" Background="Gray" CornerRadius="25" Margin="10" BorderThickness="2" BorderBrush="Yellow">
+            <Border Grid.Row="1" Background="Gray" CornerRadius="25" Margin="10" BorderThickness="2" BorderBrush="White">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -38,13 +38,13 @@
                     <TextBlock Foreground="White" TextAlignment="Center" VerticalAlignment="Center" FontSize="20" Grid.Row="1">
                         Ára:
                     </TextBlock>
-                    <Button Name="ClickAddKacsa" Foreground="Black" FontSize="20" Grid.Row="2" Grid.ColumnSpan="2" Margin="7">
+                    <Button Name="ClickAddKacsa" Foreground="Black" FontSize="20" Grid.Row="2" Grid.ColumnSpan="2" Margin="7" Width="210">
                         Hozzáadás:
                     </Button>
                     <TextBox Name="KacsaNameTextBox" Grid.Column="1" Grid.Row="0" Margin="10">
                         
                     </TextBox>
-                    <TextBox Name="KacsaPriceTextBox" Grid.Column="1" Grid.Row="1" Margin="10">
+                    <TextBox Name="KacsaPriceTextBox" Grid.Column="1" Grid.Row="1" Margin="10" BorderBrush="#FFFDAD00">
 
                     </TextBox>
                 </Grid>
@@ -59,7 +59,7 @@
                 Statisztika
             </TextBlock>
 
-            <Border Grid.Row="1" Margin="10" CornerRadius="20" Background="Gray" BorderThickness="2" BorderBrush="Yellow">
+            <Border Grid.Row="1" Margin="10" CornerRadius="20" Background="Gray" BorderThickness="2" BorderBrush="White">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -91,7 +91,7 @@
                 </Grid>
             </Border>
         </Grid>
-        <Border Grid.Row="1" Grid.ColumnSpan="2" CornerRadius="20" BorderBrush="Yellow" BorderThickness="2" Background="Gray" Margin="20">
+        <Border Grid.Row="1" Grid.ColumnSpan="2" CornerRadius="20" BorderBrush="white" BorderThickness="2" Background="Gray" Margin="20">
             <StackPanel Name="KacsaPanel" Orientation="Horizontal">
                 
             </StackPanel>

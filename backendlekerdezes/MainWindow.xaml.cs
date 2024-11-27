@@ -25,6 +25,7 @@ namespace backendlekerdezes
         public MainWindow()
         {
             InitializeComponent();
+            CreateTextBlock();
         }
 
         async void CreateTextBlock()
@@ -35,12 +36,18 @@ namespace backendlekerdezes
             try
             {
                 HttpResponseMessage response = await client.GetAsync(url);
+                response.EnsureSuccessStatusCode();
                 string stringResponse = await response.Content.ReadAsStringAsync();
                 List<KacsaClass> kacsaList = JsonConvert.DeserializeObject<List<KacsaClass>>(stringResponse);
                 foreach (KacsaClass item in kacsaList)
                 {
+                    Border oneBorder = new Border();
+
+                    KacsaPanel.Children.Add(oneBorder);
+                    
                     Grid oneGrid = new Grid();
-                    KacsaPanel.Children.Add(oneGrid);
+
+                    oneBorder.Child = oneGrid;
 
                     RowDefinition firstRow = new RowDefinition();
                     RowDefinition secondRow = new RowDefinition();
@@ -68,7 +75,13 @@ namespace backendlekerdezes
                     PriceTextBlock.Text = $"Ára: {item.price}";
                     SellButton.Content = "Eladás";
 
-                    //oneGrid.Background = ;
+                    oneBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("gray"));
+                    oneBorder.Margin = new Thickness(10);
+                    oneBorder.CornerRadius = new CornerRadius(20);
+                    oneBorder.Padding = new Thickness(10);
+
+                    NameTextBlock.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
+                    PriceTextBlock.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 
                     //oneBlock.Text = $"Kacsa neve: {item.name}, kacsa hossza: {item.price}";
                 }
