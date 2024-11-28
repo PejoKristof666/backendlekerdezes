@@ -42,6 +42,9 @@ namespace backendlekerdezes
                 response.EnsureSuccessStatusCode();
                 string stringResponse = await response.Content.ReadAsStringAsync();
                 List<KacsaClass> kacsaList = JsonConvert.DeserializeObject<List<KacsaClass>>(stringResponse);
+                NumOfKacsa = 0;
+                MostexpensiveKacsa = 0;
+                CheapestKacsa = int.MaxValue;
                 foreach (KacsaClass item in kacsaList)
                 {
                     NumOfKacsa++;
