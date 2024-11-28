@@ -22,6 +22,9 @@ namespace backendlekerdezes
     /// </summary>
     public partial class MainWindow : Window
     {
+        int NumOfKacsa = 0;
+        int MostexpensiveKacsa = 0;
+        int CheapestKacsa = int.MaxValue;
         public MainWindow()
         {
             InitializeComponent();
@@ -41,6 +44,16 @@ namespace backendlekerdezes
                 List<KacsaClass> kacsaList = JsonConvert.DeserializeObject<List<KacsaClass>>(stringResponse);
                 foreach (KacsaClass item in kacsaList)
                 {
+                    NumOfKacsa++;
+                    if (CheapestKacsa > item.price)
+                    {
+                        CheapestKacsa = item.price;
+                    }
+                    if (MostexpensiveKacsa < item.price)
+                    {
+                        MostexpensiveKacsa = item.price;
+                    }
+
                     Border oneBorder = new Border();
 
                     KacsaPanel.Children.Add(oneBorder);
@@ -75,6 +88,37 @@ namespace backendlekerdezes
                     PriceTextBlock.Text = $"Ára: {item.price}";
                     SellButton.Content = "Eladás";
 
+                    SellButton.Click += async (s, e) =>
+                    {
+                        HttpClient Deleteclient = new HttpClient();
+                        string DeleteUrl = "http://127.1.1.1:4444/doga";
+
+                        try
+                        {
+                            var jsonObject = new
+                            {
+                                id = item.id
+                            };
+
+                            string jsonData = JsonConvert.SerializeObject(jsonObject);
+                            HttpRequestMessage request = new HttpRequestMessage();
+                            request.Method = HttpMethod.Delete;
+                            request.RequestUri = new Uri(DeleteUrl);
+                            request.Content = new StringContent(jsonData, Encoding.UTF8, "application/json");
+
+                            HttpResponseMessage Deleteresponse = await client.SendAsync(request);
+                            Deleteresponse.EnsureSuccessStatusCode();
+
+                            KacsaPanel.Children.Remove(oneBorder);
+                        }
+
+                        catch (Exception error)
+                        {
+
+                            MessageBox.Show(error.Message);
+                        }
+                    };
+
                     oneBorder.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("gray"));
                     oneBorder.Margin = new Thickness(10);
                     oneBorder.CornerRadius = new CornerRadius(20);
@@ -85,6 +129,9 @@ namespace backendlekerdezes
 
                     //oneBlock.Text = $"Kacsa neve: {item.name}, kacsa hossza: {item.price}";
                 }
+                KacsaDarab.Text = NumOfKacsa + " darab";
+                KacsaMin.Text = CheapestKacsa + " $";
+                KacsaMax.Text = MostexpensiveKacsa + " $";
             }
             catch (Exception e)
             {
@@ -92,6 +139,8 @@ namespace backendlekerdezes
                 MessageBox.Show(e.Message);
             }
         }
+
+        
 
         async void AddKacsa(object s, EventArgs e)
         {
