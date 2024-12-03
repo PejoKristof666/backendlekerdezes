@@ -22,6 +22,9 @@ namespace backendlekerdezes
     /// </summary>
     public partial class MainWindow : Window
     {
+        int BorderHeight = -1;
+        int AllBorderWidth = 0;
+
         int NumOfKacsa = 0;
         int MostexpensiveKacsa = 0;
         int CheapestKacsa = int.MaxValue;
@@ -113,6 +116,15 @@ namespace backendlekerdezes
                             Deleteresponse.EnsureSuccessStatusCode();
 
                             KacsaPanel.Children.Remove(oneBorder);
+                            kacsaList.Remove(item);
+
+                            NumOfKacsa = kacsaList.Count;
+                            CheapestKacsa = kacsaList.Min(x => x.price);
+                            MostexpensiveKacsa = kacsaList.Max(x => x.price);
+
+                            KacsaDarab.Text = NumOfKacsa + " darab";
+                            KacsaMin.Text = CheapestKacsa + " $";
+                            KacsaMax.Text = MostexpensiveKacsa + " $";
                         }
 
                         catch (Exception error)
@@ -127,11 +139,27 @@ namespace backendlekerdezes
                     oneBorder.CornerRadius = new CornerRadius(20);
                     oneBorder.Padding = new Thickness(10);
 
+                    if (BorderHeight < 0)
+                    {
+                        BorderHeight = (int)oneBorder.Height;
+                    }
+
+                    AllBorderWidth += (int)oneBorder.Width + (int)oneBorder.Margin.Left + (int)oneBorder.Margin.Right;
+
                     NameTextBlock.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
                     PriceTextBlock.Foreground = new SolidColorBrush(Color.FromRgb(255, 255, 255));
 
                     //oneBlock.Text = $"Kacsa neve: {item.name}, kacsa hossza: {item.price}";
                 }
+
+
+
+                int row = (int)KacsaPanel.Height / BorderHeight;
+
+                int ROW = (int)Math.Ceiling(AllBorderWidth / KacsaPanel.Width);
+
+                //KacsaPanel.Height = ROW * BorderHeight;
+
                 KacsaDarab.Text = NumOfKacsa + " darab";
                 KacsaMin.Text = CheapestKacsa + " $";
                 KacsaMax.Text = MostexpensiveKacsa + " $";

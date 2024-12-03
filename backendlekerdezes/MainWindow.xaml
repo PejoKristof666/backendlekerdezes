@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:backendlekerdezes"
         mc:Ignorable="d"
-        Title="MainWindow" Height="400" Width="600">
+        Title="MainWindow" Height="400" Width="900">
     <Grid Background="Black">
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -91,10 +92,26 @@
                 </Grid>
             </Border>
         </Grid>
-        <Border Grid.Row="1" Grid.ColumnSpan="2" CornerRadius="20" BorderBrush="white" BorderThickness="2" Background="Gray" Margin="20">
-            <StackPanel Name="KacsaPanel" Orientation="Horizontal">
+        <Grid Grid.Row="0" Grid.Column="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBlock Foreground="White" Grid.Row="0" Grid.Column="0" FontSize="20" TextAlignment="Center" VerticalAlignment="Center">Kacsa keresése</TextBlock>
+            <Border Grid.Row="1" Margin="10" CornerRadius="20" Background="Gray" BorderThickness="2" BorderBrush="White">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                </Grid>
+            </Border>
+        </Grid>
+        <Border Grid.Row="1" Grid.ColumnSpan="3" CornerRadius="20" BorderBrush="white" BorderThickness="2" Background="Gray" Margin="20">
+            <WrapPanel Name="KacsaPanel" Orientation="Horizontal">
                 
-            </StackPanel>
+            </WrapPanel>
         </Border>
         
     </Grid>
